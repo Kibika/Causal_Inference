@@ -1,9 +1,8 @@
-import os
 import pandas as pd
 import mysql.connector
 from mysql.connector import Error
-from encrypt import code
-import csv
+from scripts.encrypt import code
+
 
 def DBConnect(dbName=None):
 
@@ -125,6 +124,6 @@ if __name__ == "__main__":
     createDB(dbName='Diagnosis')
     execute_query(mysql.connector.connect(host="localhost", user='root',password=str(code), database="Diagnosis"), create_diagnosis_table)
 
-    df = pd.read_csv('./data/data.csv')
+    df = pd.read_csv('../data/data.csv')
 
     insert_to_diagnosis_table(dbName='Diagnosis', df=df, table_name='DiagnosisInformation')
