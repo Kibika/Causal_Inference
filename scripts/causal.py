@@ -19,11 +19,12 @@ from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
 from causalnex.network import BayesianNetwork
 
-from feature_selection import *
-from causal_graph import *
-from similarity import *
-from discretizing import *
-from training import *
+from .feature_selection import *
+from .causal_graph import *
+from .similarity import *
+from .discretizing import *
+from .training import *
+
 
 import dvc
 import os
@@ -31,23 +32,23 @@ import warnings
 import sys
 import pathlib
 
-PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("./data").resolve()
+# PATH = pathlib.Path(__file__).parent
+# DATA_PATH = PATH.joinpath("./data").resolve()
 
-path = DATA_PATH.joinpath("result_dataframe.csv")
-repo = 'D:/Stella/Documents/10_Academy/Week_7/causal_inference'
-version = 'v1'
-
-data_url = dvc.api.get_url(path=path,
-                           repo=repo,
-                           rev=version)
-scaler = StandardScaler()
-classifier = RandomForestClassifier(n_estimators=100)
+# path = DATA_PATH.joinpath("result_dataframe.csv")
+# repo = 'D:/Stella/Documents/10_Academy/Week_7/causal_inference'
+# version = 'v1'
+#
+# data_url = dvc.api.get_url(path=path,
+#                            repo=repo,
+#                            rev=version)
+# scaler = StandardScaler()
+# classifier = RandomForestClassifier(n_estimators=100)
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
-    dataset = pd.read_csv(data_url, sep=",")
+    dataset = pd.read_csv(data/result_dataframe.csv, sep=",")
     diagnosis_data = dataset.copy()
     diagnosis_data = diagnosis_data.drop(['Unnamed: 0', 'id'], axis=1)
 
