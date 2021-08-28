@@ -24,7 +24,7 @@ from causal_graph import *
 from similarity import *
 from discretizing import *
 from training import *
-
+import graphviz
 
 # import dvc
 import os
