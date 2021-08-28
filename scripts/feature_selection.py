@@ -22,7 +22,7 @@ def split_data(X, y):
     # y = df["diagnosis"]
     X_scaled = scaler.fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, stratify=y, test_size=0.20, random_state=42
+        X_scaled, y, stratify=y, test_size=0.10, random_state=42
     )
     return X_train, X_test, y_train, y_test
 
