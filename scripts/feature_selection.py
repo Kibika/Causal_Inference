@@ -13,6 +13,7 @@ scaler = StandardScaler()
 classifier = RandomForestClassifier(n_estimators=100)
 
 def label_encoding(df):
+    le = LabelEncoder()
     df['diagnosis'] = le.fit_transform(df['diagnosis'])
     return df
 
@@ -45,7 +46,7 @@ def evaluation(y_test, y_pred):
 def confusion_m(y_test,y_pred):
     rf_cnm = confusion_matrix(y_test, y_pred)
     sns.heatmap(rf_cnm / np.sum(rf_cnm), annot=True, fmt='.2%', cmap='Blues')
-    ax.xaxis.set_label_position("top")
+    # ax.xaxis.set_label_position("top")
     # plt.tight_layout()
     plt.title('Confusion matrix', y=1.1)
     plt.ylabel('Actual label')

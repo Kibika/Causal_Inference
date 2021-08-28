@@ -19,44 +19,46 @@ from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
 from causalnex.network import BayesianNetwork
 
-from scripts.feature_selection import *
-from scripts.causal_graph import *
-from scripts.similarity import *
-from scripts.discretizing import *
-from scripts.training import *
+from feature_selection import *
+from causal_graph import *
+from similarity import *
+from discretizing import *
+from training import *
+import graphviz
 
-import dvc
+# import dvc
 import os
 import warnings
 import sys
 import pathlib
 
-PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("./data").resolve()
+# PATH = pathlib.Path(__file__).parent
+# DATA_PATH = PATH.joinpath("./data").resolve()
 
-path = DATA_PATH.joinpath("result_dataframe.csv")
-repo = 'D:/Stella/Documents/10_Academy/Week_7/causal_inference'
-version = 'v1'
-
-data_url = dvc.api.get_url(path=path,
-                           repo=repo,
-                           rev=version)
-scaler = StandardScaler()
-classifier = RandomForestClassifier(n_estimators=100)
+# path = DATA_PATH.joinpath("result_dataframe.csv")
+# repo = 'D:/Stella/Documents/10_Academy/Week_7/causal_inference'
+# version = 'v1'
+#
+# data_url = dvc.api.get_url(path=path,
+#                            repo=repo,
+#                            rev=version)
+# scaler = StandardScaler()
+# classifier = RandomForestClassifier(n_estimators=100)
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
-    dataset = pd.read_csv(data_url, sep=",")
+    dataset = pd.read_csv("data/data.csv", sep=",")
     diagnosis_data = dataset.copy()
-    diagnosis_data = diagnosis_data.drop(['Unnamed: 0', 'id'], axis=1)
+    diagnosis_data = diagnosis_data.drop(['Unnamed: 32','id'], axis=1)
+    diagnosis_data = label_encoding(diagnosis_data)
 
     X = diagnosis_data.drop(["diagnosis"], axis=1)
-    y = label_encoding(diagnosis_data)["diagnosis"]
+    y = diagnosis_data["diagnosis"]
 
     X_train, X_test, y_train, y_test = split_data(X, y)
 
-    y_pred = train_predict(X_train, X_test, y_train)
+    y_pred = train_predict(X_train, y_train, X_test)
 
     Accuracy_Score, Precision, Recall = evaluation(y_test, y_pred)
 
@@ -64,18 +66,22 @@ if __name__ == "__main__":
     print(matrix)
 
     selected_feat = extract_important_features(X_train, y_train)
+    print(selected_feat)
 
     # plot causal graph using selected features
 
-    causal_data = diagnosis_data[list(selected_feat)].copy()
-
+    # causal_data = diagnosis_data[list(selected_feat)].copy()
+    causal_data = diagnosis_data[['diagnosis','area_mean', 'concavity_mean', 'concave points_mean', 'radius_worst',
+       'perimeter_worst', 'area_worst', 'concavity_worst',
+       'concave points_worst']]
     initial_graph = graph_lasso_constrained(causal_data)
+    print(initial_graph)
 
     # use domain knowledge to plot final graph
     sm_lasso_constrained = from_pandas_lasso(causal_data, tabu_parent_nodes=['diagnosis'], w_threshold=0.8, beta=0.8)
 
-    sm_lasso_constrained.add_edge("concave_points_mean", "diagnosis")
-    sm_lasso_constrained.add_edge("concave_points_worst", "diagnosis")
+    sm_lasso_constrained.add_edge("concave points_mean", "diagnosis")
+    sm_lasso_constrained.add_edge("concave points_worst", "diagnosis")
     sm_lasso_constrained.add_edge("area_worst", "diagnosis")
     sm_lasso_constrained.add_edge("area_mean", "diagnosis")
     sm_lasso_constrained.add_edge("perimeter_worst", "diagnosis")
@@ -88,8 +94,13 @@ if __name__ == "__main__":
         all_edge_attributes=EDGE_STYLE.WEAK)
     Image(viz.draw(format='png'))
 
+    with open("causal_graph.png", "wb") as png:
+        png.write(Image(viz.draw(format='png')).data)
+
+
     discretised_data = causal_data.copy()
-    discretised_data = discretize_outcome(discretised_data)
-    discretised_data = discretize_independent(discretised_data)
+    # discretised_data = discretize_outcome(discretised_data)
+    discretised_data = discretize_independent(discretised_data,causal_data)
 
     model = train(discretised_data, sm_lasso_constrained)
+    print(model)
