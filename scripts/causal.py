@@ -69,8 +69,10 @@ if __name__ == "__main__":
 
     # plot causal graph using selected features
 
-    causal_data = diagnosis_data[list(selected_feat)].copy()
-
+    # causal_data = diagnosis_data[list(selected_feat)].copy()
+    causal_data = diagnosis_data[['diagnosis','area_mean', 'concavity_mean', 'concave_points_mean', 'radius_worst',
+       'perimeter_worst', 'area_worst', 'concavity_worst',
+       'concave_points_worst']]
     initial_graph = graph_lasso_constrained(causal_data)
     print(initial_graph)
 
