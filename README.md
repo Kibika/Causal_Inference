@@ -1,4 +1,4 @@
-# causal_inference
+## causal_inference
 This project focuses on implementing techniques used to perform causal inference to the Wisconsin cancer dataset.
 
 Scripts used in the project are stored under the scripts folder while notebooks are stored under the notebooks folder, apart from the "test" script.
@@ -30,5 +30,6 @@ Precision: 0.97
 ## Tests
 The tests are conducted on the data via Travis CI using "test" script which can be foun under the tests folder, while the models are monitored using Github workflows.
 
+## Causal Graph
 ![causal7](https://user-images.githubusercontent.com/12167288/131225158-40a3f2cd-8293-4c29-a74d-f03f42ab0126.png)
 
