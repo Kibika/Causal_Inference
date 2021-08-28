@@ -9,6 +9,8 @@ jobs:
         with:
           python-version: '3.7.11'
       - uses: iterative/setup-cml@v1
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v1
       - name: cml
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
