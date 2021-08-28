@@ -11,4 +11,4 @@ install:
   - pip install numpy
   - pip install sklearn
 # command to run tests
-script: pytest
+script: pytest tests/test.py
