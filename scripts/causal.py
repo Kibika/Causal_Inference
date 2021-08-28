@@ -51,9 +51,10 @@ if __name__ == "__main__":
     dataset = pd.read_csv("data/result_dataframe.csv", sep=",")
     diagnosis_data = dataset.copy()
     diagnosis_data = diagnosis_data.drop(['Unnamed: 0', 'id'], axis=1)
+    diagnosis_data = label_encoding(diagnosis_data)
 
     X = diagnosis_data.drop(["diagnosis"], axis=1)
-    y = label_encoding(diagnosis_data)["diagnosis"]
+    y = diagnosis_data["diagnosis"]
 
     X_train, X_test, y_train, y_test = split_data(X, y)
 
