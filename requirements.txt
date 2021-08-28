@@ -5,4 +5,4 @@ seaborn
 causalgraphicalmodels
 sklearn
 IPython
-"causalnex[plot]"
+causalnex
