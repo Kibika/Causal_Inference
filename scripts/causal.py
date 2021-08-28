@@ -48,7 +48,7 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
-    dataset = pd.read_csv("data/result_dataframe.csv", sep=",")
+    dataset = pd.read_csv("data/data.csv", sep=",")
     diagnosis_data = dataset.copy()
     diagnosis_data = diagnosis_data.drop(['Unnamed: 0', 'id'], axis=1)
     diagnosis_data = label_encoding(diagnosis_data)
