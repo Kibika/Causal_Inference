@@ -1,7 +1,7 @@
 from IPython.display import Image
 from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
 from causalnex.structure.notears import from_pandas, from_pandas_lasso
-# import pygraphviz
+import pygraphviz
 
 
 
