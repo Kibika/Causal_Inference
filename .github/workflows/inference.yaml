@@ -25,6 +25,6 @@ jobs:
           
           echo "## Data viz" >> report.md
           cml-publish confusion_matrix.png --md >> report.md
-          cml-publish causal_.png --md >> report.md
+          cml-publish causal_graph.png --md >> report.md
           
           cml-send-comment report.md
