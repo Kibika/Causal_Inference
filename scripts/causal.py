@@ -26,7 +26,7 @@ from discretizing import *
 from training import *
 
 
-import dvc
+# import dvc
 import os
 import warnings
 import sys
