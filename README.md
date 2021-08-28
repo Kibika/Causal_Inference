@@ -1,4 +1,4 @@
-## causal_inference
+## Causal_inference
 This project focuses on implementing techniques used to perform causal inference to the Wisconsin cancer dataset.
 
 Scripts used in the project are stored under the scripts folder while notebooks are stored under the notebooks folder, apart from the "test" script.
