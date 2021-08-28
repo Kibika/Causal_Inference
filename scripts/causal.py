@@ -70,6 +70,7 @@ if __name__ == "__main__":
     causal_data = diagnosis_data[list(selected_feat)].copy()
 
     initial_graph = graph_lasso_constrained(causal_data)
+    print(initial_graph)
 
     # use domain knowledge to plot final graph
     sm_lasso_constrained = from_pandas_lasso(causal_data, tabu_parent_nodes=['diagnosis'], w_threshold=0.8, beta=0.8)
@@ -88,8 +89,12 @@ if __name__ == "__main__":
         all_edge_attributes=EDGE_STYLE.WEAK)
     Image(viz.draw(format='png'))
 
+    Image(viz.draw(format='png')).save("causal_graph.png")
+
+
     discretised_data = causal_data.copy()
     discretised_data = discretize_outcome(discretised_data)
     discretised_data = discretize_independent(discretised_data)
 
     model = train(discretised_data, sm_lasso_constrained)
+    print(model)
