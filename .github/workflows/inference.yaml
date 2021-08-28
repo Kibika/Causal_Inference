@@ -12,7 +12,11 @@ jobs:
       - name: cml
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: libgraphviz-dev
+        run: sudo apt-get install libgraphviz-dev
+      - name: Install requirements
         run: |
+#          sudo apt-get install libgraphviz-dev
           pip install -r requirements.txt
           python scripts/causal.py
           
