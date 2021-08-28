@@ -13,7 +13,7 @@ from sklearn.feature_selection import SelectFromModel
 from IPython.display import Image
 from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
 from causalnex.structure.notears import from_pandas, from_pandas_lasso
-# import pygraphviz
+import pygraphviz
 from causalnex.inference import InferenceEngine
 from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
@@ -93,12 +93,13 @@ if __name__ == "__main__":
         all_edge_attributes=EDGE_STYLE.WEAK)
     Image(viz.draw(format='png'))
 
-    Image(viz.draw(format='png')).save("causal_graph.png")
+    with open("casual_graph.png", "wb") as png:
+        png.write(Image(viz.draw(format='png')).data)
 
 
     discretised_data = causal_data.copy()
-    discretised_data = discretize_outcome(discretised_data)
-    discretised_data = discretize_independent(discretised_data)
+    # discretised_data = discretize_outcome(discretised_data)
+    discretised_data = discretize_independent(discretised_data,causal_data)
 
     model = train(discretised_data, sm_lasso_constrained)
     print(model)
