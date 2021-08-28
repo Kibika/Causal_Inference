@@ -2,6 +2,8 @@ from causalnex.inference import InferenceEngine
 from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
 from causalnex.network import BayesianNetwork
+from sklearn.model_selection import train_test_split
+
 
 
 # sm = structured model from causaulnex
