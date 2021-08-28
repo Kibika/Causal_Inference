@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     dataset = pd.read_csv("data/data.csv", sep=",")
     diagnosis_data = dataset.copy()
-    diagnosis_data = diagnosis_data.drop(['Unnamed: 0', 'id'], axis=1)
+    diagnosis_data = diagnosis_data.drop(['id'], axis=1)
     diagnosis_data = label_encoding(diagnosis_data)
 
     X = diagnosis_data.drop(["diagnosis"], axis=1)
