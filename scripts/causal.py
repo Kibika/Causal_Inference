@@ -66,6 +66,7 @@ if __name__ == "__main__":
     print(matrix)
 
     selected_feat = extract_important_features(X_train, y_train)
+    print(selected_feat)
 
     # plot causal graph using selected features
 
