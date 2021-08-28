@@ -19,11 +19,11 @@ from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
 from causalnex.network import BayesianNetwork
 
-from .feature_selection import *
-from .causal_graph import *
-from .similarity import *
-from .discretizing import *
-from .training import *
+from feature_selection import *
+from causal_graph import *
+from similarity import *
+from discretizing import *
+from training import *
 
 
 import dvc
