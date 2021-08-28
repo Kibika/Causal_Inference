@@ -5,6 +5,4 @@ seaborn
 causalgraphicalmodels
 sklearn
 IPython
-graphviz
-pygraphviz
-causalnex
+"causalnex[plot]"
