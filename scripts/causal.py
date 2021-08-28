@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     X_train, X_test, y_train, y_test = split_data(X, y)
 
-    y_pred = train_predict(X_train, X_test, y_train)
+    y_pred = train_predict(X_train, y_train, X_test)
 
     Accuracy_Score, Precision, Recall = evaluation(y_test, y_pred)
 
