@@ -5,5 +5,6 @@ seaborn
 causalgraphicalmodels
 sklearn
 IPython
-causalnex
+libgraphviz-dev
 pygraphviz
+causalnex
