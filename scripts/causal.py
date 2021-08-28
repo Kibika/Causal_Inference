@@ -13,7 +13,7 @@ from sklearn.feature_selection import SelectFromModel
 from IPython.display import Image
 from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
 from causalnex.structure.notears import from_pandas, from_pandas_lasso
-import pygraphviz
+# import pygraphviz
 from causalnex.inference import InferenceEngine
 from causalnex.evaluation import roc_auc
 from causalnex.evaluation import classification_report
