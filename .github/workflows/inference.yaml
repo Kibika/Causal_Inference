@@ -20,13 +20,12 @@ jobs:
           python scripts/causal.py
           
           echo "## Random Forest metrics" > report.md
-          cat metrics.txt >> report.md
-          
+          cat metrics.txt >> report.md          
           echo "## Bayesian Network Metrics" > report.md
-          cat bn_metrics.txt >> report.md
-          
-          echo "## Data viz" >> report.md
+          cat bn_metrics.txt >> report.md          
+          echo "## Random Forest Evaluation" >> report.md
           cml-publish confusion_matrix.png --md >> report.md
+          echo "## Causal Graph" >> report.md
           cml-publish causal_graph.png --md >> report.md
           
           cml-send-comment report.md
