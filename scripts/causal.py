@@ -70,17 +70,17 @@ if __name__ == "__main__":
     # plot causal graph using selected features
 
     # causal_data = diagnosis_data[list(selected_feat)].copy()
-    causal_data = diagnosis_data[['diagnosis','area_mean', 'concavity_mean', 'concave_points_mean', 'radius_worst',
+    causal_data = diagnosis_data[['diagnosis','area_mean', 'concavity_mean', 'concave points_mean', 'radius_worst',
        'perimeter_worst', 'area_worst', 'concavity_worst',
-       'concave_points_worst']]
+       'concave points_worst']]
     initial_graph = graph_lasso_constrained(causal_data)
     print(initial_graph)
 
     # use domain knowledge to plot final graph
     sm_lasso_constrained = from_pandas_lasso(causal_data, tabu_parent_nodes=['diagnosis'], w_threshold=0.8, beta=0.8)
 
-    sm_lasso_constrained.add_edge("concave_points_mean", "diagnosis")
-    sm_lasso_constrained.add_edge("concave_points_worst", "diagnosis")
+    sm_lasso_constrained.add_edge("concave points_mean", "diagnosis")
+    sm_lasso_constrained.add_edge("concave points_worst", "diagnosis")
     sm_lasso_constrained.add_edge("area_worst", "diagnosis")
     sm_lasso_constrained.add_edge("area_mean", "diagnosis")
     sm_lasso_constrained.add_edge("perimeter_worst", "diagnosis")
