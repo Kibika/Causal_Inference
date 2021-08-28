@@ -6,3 +6,4 @@ causalgraphicalmodels
 sklearn
 IPython
 causalnex
+dvc
