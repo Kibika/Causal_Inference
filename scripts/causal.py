@@ -94,7 +94,7 @@ if __name__ == "__main__":
         all_edge_attributes=EDGE_STYLE.WEAK)
     Image(viz.draw(format='png'))
 
-    with open("casual_graph.png", "wb") as png:
+    with open("causal_graph.png", "wb") as png:
         png.write(Image(viz.draw(format='png')).data)
 
 
