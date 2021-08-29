@@ -3,10 +3,10 @@ This project focuses on implementing techniques used to perform causal inference
 
 Scripts used in the project are stored under the scripts folder while notebooks are stored under the notebooks folder, apart from the "test" script.
 
-The causal_inference "notebook" and "causal" script brings all the concepts dicussed below into one
+The "causal_inference" notebook and "causal" script brings all the concepts dicussed below into one
 
 ## The Model and Results
-The project begins with exploring the observed data, to derive the relationships that can seen from the data collected. 
+The project begins with exploring the observed data, to derive the relationships that can seen from the data collected. Data exploration is done in the "causal_inference" notebook.  
 The correlation matrix is plotted to identify the bivariate relationship between the variables.
 
 Feature selection is done to reduce the dimensionality of the graph using the "feature_selection" script. The random forest classification model is used to extract the most important features.
@@ -16,7 +16,7 @@ The relationships under causal inference are also explored by using python libra
 The variables that directly cause the outcome variable as seen from the causal graph are retained in the dataset for training and
 prediction. The script used for constructing the graph is the "causal_graph" script. The stability of the relationships between the independent variable in the graph is checked using Jaccard's similarity index.
 
-The resulting graph from this analysis is shown at the end of this requirements.txt
+The resulting graph from this analysis is shown at the end of this README.
 
 The Bayesian network, fitted using the "training" script. The network train on discretized data, the data is discretized using the "discretizing" script. The network learns the condition probabilities of the nodes of the graph and uses this for prediction.
 The Bayesian network achieves the metrics below.
