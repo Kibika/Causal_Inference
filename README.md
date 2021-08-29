@@ -18,7 +18,7 @@ prediction. The script used for constructing the graph is the "causal_graph" scr
 
 The resulting graph from this analysis is shown at the end of this README.
 
-The Bayesian network, fitted using the "training" script. The network train on discretized data, the data is discretized using the "discretizing" script. The network learns the condition probabilities of the nodes of the graph and uses this for prediction.
+The Bayesian network, fitted using the "training" script. The network trains on discretized data, the data is discretized using the "discretizing" script. The network learns the conditional probabilities of the nodes of the graph and uses this for prediction.
 The Bayesian network achieves the metrics below.
 
 Recall: 0.87
